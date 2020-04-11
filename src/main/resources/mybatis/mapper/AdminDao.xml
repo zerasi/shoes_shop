@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sys.dao.AdminDao">
+	<select id="findTotal" resultType="int">
+		SELECT COUNT(*) FROM admin
+	</select>
+	<select id="findRows" resultType="admin">
+		SELECT * FROM admin LIMIT #{0},#{1}
+	</select>
+	<select id="loginAdmin" resultType="admin">
+		SELECT * FROM admin where username=#{username} and password=#{password}
+	</select>
+	<insert id="insertAdmin" parameterType="admin">
+		INSERT INTO admin VALUES(NULL,#{username},#{password})
+	</insert>
+	<update id="updateAdmin" parameterType="admin">
+		UPDATE admin SET username=#{username},password=#{password} WHERE id=#{id}
+	</update>
+	<delete id="deleteAdmin" parameterType="int">
+		DELETE FROM admin WHERE id=#{0}
+	</delete>
+</mapper>
